@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Package
+        run: |
+          mkdir -p dist/ClaudeUsageWidget
+          cp -r ClaudeUsageWidget.ps1 ClaudeUsageWidget.vbs src LICENSE README.md dist/ClaudeUsageWidget/
+          cd dist && zip -r ClaudeUsageWidget.zip ClaudeUsageWidget
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/ClaudeUsageWidget.zip --title "$GITHUB_REF_NAME" --generate-notes

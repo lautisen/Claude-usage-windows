@@ -8,22 +8,32 @@ on:
 jobs:
   test:
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shell: [powershell, pwsh]
+    name: test (${{ matrix.shell }})
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+
+      - name: Version
+        run: $PSVersionTable
 
       - name: Install Pester and PSScriptAnalyzer
-        shell: pwsh
         run: |
           Install-Module Pester -MinimumVersion 5.5.0 -Force -SkipPublisherCheck
           Install-Module PSScriptAnalyzer -Force
 
       - name: Lint
-        shell: pwsh
         run: |
           $issues = Invoke-ScriptAnalyzer -Path . -Recurse -Settings ./PSScriptAnalyzerSettings.psd1
           $issues | Format-Table -AutoSize
           if ($issues | Where-Object Severity -in 'Error', 'Warning') { exit 1 }
 
       - name: Test
-        shell: pwsh
-        run: Invoke-Pester -Path ./tests -CI
+        run: |
+          Import-Module Pester -MinimumVersion 5.5.0
+          Invoke-Pester -Path ./tests -CI
