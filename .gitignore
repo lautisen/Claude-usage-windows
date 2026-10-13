@@ -1,0 +1,9 @@
+# Windows
+Thumbs.db
+desktop.ini
+*.lnk
+
+# Credenciales (nunca subir)
+.credentials.json
+.env
+*.log
