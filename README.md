@@ -15,7 +15,7 @@ Looking for macOS? See [claude-usage-menubar](https://github.com/lautisen/claude
 - **Two tray icons** with the current percentage drawn on them:
   - **Session (5 h)** — filled rounded square.
   - **Week** — dark square with a coloured border.
-- **Severity colours** — green below 50 %, amber from 50 %, red from 80 %.
+- **Severity colours** — green below 75 %, amber from 75 %, red from 90 %.
 - **Tooltip and context menu** with the reset time and time remaining, e.g. `42% - reinicia 17:30 (en 2h 13m)`.
 - **Auto‑refresh** every 3 minutes, plus a manual **Refresh now** menu item.
 - **Start with Windows** toggle (shortcut in the user's Startup folder).

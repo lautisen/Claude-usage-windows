@@ -3,8 +3,8 @@
     param([Nullable[int]]$Percent)
 
     if ($null -eq $Percent) { return 'Unknown' }
-    if ($Percent -lt 50)    { return 'Ok' }
-    if ($Percent -lt 80)    { return 'Warning' }
+    if ($Percent -lt 75)    { return 'Ok' }
+    if ($Percent -lt 90)    { return 'Warning' }
     return 'Critical'
 }
 
