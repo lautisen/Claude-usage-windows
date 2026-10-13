@@ -6,10 +6,10 @@ Describe 'Get-SeverityLevel' {
     It 'devuelve <Expected> para <Percent>%' -ForEach @(
         @{ Percent = $null; Expected = 'Unknown' }
         @{ Percent = 0;     Expected = 'Ok' }
-        @{ Percent = 49;    Expected = 'Ok' }
-        @{ Percent = 50;    Expected = 'Warning' }
-        @{ Percent = 79;    Expected = 'Warning' }
-        @{ Percent = 80;    Expected = 'Critical' }
+        @{ Percent = 74;    Expected = 'Ok' }
+        @{ Percent = 75;    Expected = 'Warning' }
+        @{ Percent = 89;    Expected = 'Warning' }
+        @{ Percent = 90;    Expected = 'Critical' }
         @{ Percent = 100;   Expected = 'Critical' }
         @{ Percent = 130;   Expected = 'Critical' }
     ) {
